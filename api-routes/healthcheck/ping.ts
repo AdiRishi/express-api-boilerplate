@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { RouteModuleWrapper } from '../route';
+import { RouteModuleWrapper } from '../route-types';
 
 const pingRouter = Router();
 

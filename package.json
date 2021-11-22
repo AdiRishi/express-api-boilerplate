@@ -18,7 +18,7 @@
     "lint:fix": "eslint . --fix --ext .js,.jsx,.ts,.tsx && prettier --write .",
     "prettier": "prettier --write .",
     "prepare": "husky install",
-    "serve": "pm2 start pm2.production.config.js"
+    "serve": "pm2-runtime start pm2.production.config.js"
   },
   "private": true,
   "devDependencies": {

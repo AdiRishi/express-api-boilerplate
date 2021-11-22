@@ -7,5 +7,5 @@ const app = express();
 ApiModuleWrapper(app);
 
 app.listen(config.port, config.host, () => {
-  console.log(`Example app is listening at http://${config.host}:${config.port}`);
+  console.log(`express-js-template is listening at http://${config.host}:${config.port}`);
 });

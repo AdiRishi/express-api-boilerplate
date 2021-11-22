@@ -7,12 +7,13 @@
   "author": "Adishwar Rishi <adiswa123@gmail.com>",
   "license": "private",
   "scripts": {
-    "serve": "ts-node-dev --respawn app.ts",
-    "prettier": "prettier --write .",
+    "build": "tsc",
+    "dev": "ts-node-dev --respawn app.ts",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx && prettier --check .",
     "lint:fix": "eslint . --fix --ext .js,.jsx,.ts,.tsx && prettier --write .",
-    "build": "tsc",
-    "prepare": "husky install"
+    "prettier": "prettier --write .",
+    "prepare": "husky install",
+    "serve": "pm2 start pm2.production.config.js"
   },
   "private": true,
   "devDependencies": {
@@ -22,12 +23,13 @@
     "@typescript-eslint/parser": "5.4.0",
     "eslint": "8.3.0",
     "eslint-config-prettier": "8.3.0",
+    "husky": "7.0.4",
     "prettier": "2.4.1",
     "ts-node-dev": "1.1.8",
-    "typescript": "4.5.2",
-    "husky": "7.0.4"
+    "typescript": "4.5.2"
   },
   "dependencies": {
-    "express": "4.17.1"
+    "express": "4.17.1",
+    "pm2": "5.1.2"
   }
 }

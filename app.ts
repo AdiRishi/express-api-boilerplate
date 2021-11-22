@@ -1,13 +1,11 @@
 import express from 'express';
+import ApiModuleWrapper from './api-routes';
 
 const app = express();
 const port = 8080;
-const host = 'localhost';
 
-app.get('/',(req, res) => {
-    res.send('Hello world');
-});
+ApiModuleWrapper(app);
 
-app.listen(port, host, () => {
+app.listen(port, () => {
     console.log(`Example app is listening at http://localhost:${port}`);
 });

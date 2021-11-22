@@ -9,7 +9,7 @@
   "scripts": {
     "serve": "ts-node-dev --respawn app.ts",
     "prettier": "prettier --write .",
-    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx && prettier --check .",
     "build": "tsc"
   },
   "private": true,

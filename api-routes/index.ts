@@ -5,8 +5,8 @@ import HealthcheckModuleWrapper from './healthcheck';
 const apiRouter = Router();
 
 const ApiModuleWrapper: RouteModuleWrapper = (app: Router) => {
-    HealthcheckModuleWrapper(apiRouter);
-    app.use('/api', apiRouter);
-}
+  HealthcheckModuleWrapper(apiRouter);
+  app.use('/api', apiRouter);
+};
 
 export default ApiModuleWrapper;

@@ -7,5 +7,5 @@ const port = 8080;
 ApiModuleWrapper(app);
 
 app.listen(port, () => {
-    console.log(`Example app is listening at http://localhost:${port}`);
+  console.log(`Example app is listening at http://localhost:${port}`);
 });

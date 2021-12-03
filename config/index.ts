@@ -7,6 +7,7 @@ const ConfigEnvironmentOverrideMapping: { [Property in keyof Config]: string } =
   environment: 'NODE_ENV',
   host: 'HOST',
   port: 'PORT',
+  dbConnectionUrl: 'DB_CONNECTION_URL',
 };
 
 const overrideFromEnv: (c: Config) => void = (config: Config) => {

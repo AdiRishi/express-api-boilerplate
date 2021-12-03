@@ -5,6 +5,7 @@ import helmet from 'helmet';
 import cors from 'cors';
 import { createHttpTerminator } from 'http-terminator';
 import Logger, { initApp } from './utils/logging';
+import { initApp as InitSchemaValidationMiddleware } from './middleware/jsonschema-validator';
 import ApiModuleWrapper from './api-routes';
 
 const app = express();
@@ -14,6 +15,7 @@ app.use(cors());
 app.use(express.json());
 ApiModuleWrapper(app);
 initApp(app);
+InitSchemaValidationMiddleware(app);
 
 const server = app.listen(config.port, config.host, () => {
   Logger.info(`express-js-template is listening at http://${config.host}:${config.port}`);

@@ -4,17 +4,18 @@ import express from 'express';
 import helmet from 'helmet';
 import cors from 'cors';
 import { createHttpTerminator } from 'http-terminator';
-import Logger, { initApp } from './utils/logging';
+import Logger, { initApp as InitAppLogger } from './utils/logging';
 import { initApp as InitSchemaValidationMiddleware } from './middleware/jsonschema-validator';
 import ApiModuleWrapper from './api-routes';
+import prisma from './utils/db';
 
 const app = express();
 
 app.use(helmet());
 app.use(cors());
 app.use(express.json());
+InitAppLogger(app);
 ApiModuleWrapper(app);
-initApp(app);
 InitSchemaValidationMiddleware(app);
 
 const server = app.listen(config.port, config.host, () => {
@@ -26,5 +27,6 @@ const httpTerminator = createHttpTerminator({
 });
 
 process.on('SIGTERM', async () => {
+  await prisma.$disconnect();
   await httpTerminator.terminate();
 });

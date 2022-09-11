@@ -1,6 +1,6 @@
 import { Router } from 'express';
-import { Validator } from 'express-json-validator-middleware';
 import { createUser, getUser } from '../../controllers/user';
+import { createJsonSchemaValidator } from '../../middleware/jsonschema-validator';
 import Logger from '../../utils/logging';
 import { RouteModuleWrapper } from '../route-types';
 import {
@@ -11,7 +11,7 @@ import {
 } from './json-schema';
 
 const userRouter = Router();
-const { validate: JsonSchemaValidator } = new Validator({});
+const JsonSchemaValidator = createJsonSchemaValidator();
 
 userRouter.get('/user', JsonSchemaValidator({ body: GetUserJsonSchema }), async (req, res) => {
   const data = req.body as GetUserSchema;

@@ -1,5 +1,6 @@
 import { ErrorRequestHandler } from 'express';
-import { ValidationError } from 'express-json-validator-middleware';
+import { Validator, ValidationError } from 'express-json-validator-middleware';
+import addFormats from 'ajv-formats';
 import { InitApp } from '../utils/util-types';
 
 const errorHandler: ErrorRequestHandler = (error, req, res, next) => {
@@ -10,6 +11,16 @@ const errorHandler: ErrorRequestHandler = (error, req, res, next) => {
     next(error);
   }
 };
+
+export function createJsonSchemaValidator(ajvOptions?: ConstructorParameters<typeof Validator>[0]) {
+  const finalOptions: NonNullable<typeof ajvOptions> = ajvOptions || { useDefaults: true };
+  const validator = new Validator(finalOptions);
+
+  // extend AJV instance
+  addFormats(validator.ajv);
+
+  return validator.validate;
+}
 
 export const initApp: InitApp = (app) => {
   app.use(errorHandler);
